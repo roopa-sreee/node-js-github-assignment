@@ -1,248 +1,67 @@
-# Todo Application
+# git hub assignment
 
-Given an `app.js` file and an empty database file `todoApplication.db`.
+Given an `app.js` file and a database file `issues.db`.
 
-Create a table with the name `todo` with the following columns,
+Create a table with the name `user` with the following columns,
 
-**Todo Table**
+**user**
 
 | Column   | Type    |
 | -------- | ------- |
 | id       | INTEGER |
-| todo     | TEXT    |
-| priority | TEXT    |
-| status   | TEXT    |
+| username | CHAR    |
 
-and write APIs to perform operations on the table `todo`,
+Create a table with the name `user_issues` with the following columns,
 
-<MultiLineNote>
-  
-  - Replace the spaces in URL with `%20`.
-  - Possible values for `priority` are `HIGH`, `MEDIUM`, and `LOW`.
-  - Possible values for `status` are `TO DO`, `IN PROGRESS`, and `DONE`.
-</MultiLineNote>
+**userIssues**
+
+| Column | Type |
+
+|username | CHAR |
+|userId | INT |
+|totalOpenIssues|INT |
+|issuesOpenedInTheDay | INT |
+|issuesOpenedInAWeek |INT |
+|issuesOpenedBeforeAWeek |INT |
+
+and write APIs to perform operations on the table `user-issues`,
 
 ### API 1
 
-#### Path: `/todos/`
+#### Path: `/userId/`
 
-#### Method: `GET`
+### Response
 
-- **Scenario 1**
-
-  - **Sample API**
-    ```
-    /todos/?status=TO%20DO
-    ```
-  - **Description**:
-
-    Returns a list of all todos whose status is 'TO DO'
-
-  - **Response**
-
-    ```
-    [
-      {
-        id: 1,
-        todo: "Watch Movie",
-        priority: "LOW",
-        status: "TO DO"
-      },
-      ...
-    ]
-    ```
-
-- **Scenario 2**
-
-  - **Sample API**
-    ```
-    /todos/?priority=HIGH
-    ```
-  - **Description**:
-
-    Returns a list of all todos whose priority is 'HIGH'
-
-  - **Response**
-
-    ```
-    [
-      {
-        id: 2,
-        todo: "Learn Node JS",
-        priority: "HIGH",
-        status: "IN PROGRESS"
-      },
-      ...
-    ]
-    ```
-
-- **Scenario 3**
-
-  - **Sample API**
-    ```
-    /todos/?priority=HIGH&status=IN%20PROGRESS
-    ```
-  - **Description**:
-
-    Returns a list of all todos whose priority is 'HIGH' and status is 'IN PROGRESS'
-
-  - **Response**
-
-    ```
-    [
-      {
-        id: 2,
-        todo: "Learn Node JS",
-        priority: "HIGH",
-        status: "IN PROGRESS"
-      },
-      ...
-    ]
-    ```
-
-- **Scenario 4**
-
-  - **Sample API**
-    ```
-    /todos/?search_q=Play
-    ```
-  - **Description**:
-
-    Returns a list of all todos whose todo contains 'Play' text
-
-  - **Response**
-
-    ```
-    [
-      {
-        id: 4,
-        todo: "Play volleyball",
-        priority: "MEDIUM",
-        status: "DONE"
-      },
-      ...
-    ]
-    ```
+"{
+userId:1000,
+totalOpenIssues : 15,
+issuesOpenedInTheDay : 4,
+issuesOpenedInAWeek : 5,
+issuesOpenedBeforeAWeek : 11
+}"
 
 ### API 2
 
-#### Path: `/todos/:todoId/`
+### path: `/open-issues/`
 
-#### Method: `GET`
+### Response
 
-#### Description:
-
-Returns a specific todo based on the todo ID
-
-#### Response
-
-```
+[
 {
-  id: 2,
-  todo: "Learn JavaScript",
-  priority: "HIGH",
-  status: "DONE"
-}
-```
-
-### API 3
-
-#### Path: `/todos/`
-
-#### Method: `POST`
-
-#### Description:
-
-Create a todo in the todo table,
-
-#### Request
-
-```
+userId:1000,
+totalOpenIssues : 15,
+issuesOpenedInTheDay : 4,
+issuesOpenedInAWeek : 5,
+issuesOpenedBeforeAWeek : 11
+},
 {
-  "id": 10,
-  "todo": "Finalize event theme",
-  "priority": "LOW",
-  "status": "TO DO"
+userId:1001,
+totalOpenIssues : 10,
+issuesOpenedInTheDay : 2,
+issuesOpenedInAWeek : 5,
+issuesOpenedBeforeAWeek : 3
 }
-```
-
-#### Response
-
-```
-Todo Successfully Added
-```
-
-### API 4
-
-#### Path: `/todos/:todoId/`
-
-#### Method: `PUT`
-
-#### Description:
-
-Updates the details of a specific todo based on the todo ID
-
-- **Scenario 1**
-
-  - **Request**
-    ```
-    {
-      "status": "DONE"
-    }
-    ```
-  - **Response**
-
-    ```
-    Status Updated
-    ```
-
-- **Scenario 2**
-
-  - **Request**
-    ```
-    {
-      "priority": "HIGH"
-    }
-    ```
-  - **Response**
-
-    ```
-    Priority Updated
-    ```
-
-- **Scenario 3**
-
-  - **Request**
-    ```
-    {
-      "todo": "Some task"
-    }
-    ```
-  - **Response**
-
-    ```
-    Todo Updated
-    ```
-
-### API 5
-
-#### Path: `/todos/:todoId/`
-
-#### Method: `DELETE`
-
-#### Description:
-
-Deletes a todo from the todo table based on the todo ID
-
-#### Response
-
-```
-Todo Deleted
-```
-
-<br/>
-
-Use `npm install` to install the packages.
+]
 
 **Export the express instance using the default export syntax.**
 
